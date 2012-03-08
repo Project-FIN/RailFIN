@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+<![endif]-->
+<script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+
+<div id="map" style="height: 400px; width: 600px"></div>
+
+<script>
+    var map = new L.Map('map');
+    // create a CloudMade tile layer (or use other provider of your choice)
+    var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/4bdf8a2626c048129923f7597f80acce/45831/256/{z}/{x}/{y}.png', {
+        maxZoom: 18
+    });
+
+    // add the CloudMade layer to the map set the view to a given center and zoom
+    map.addLayer(cloudmade).setView(new L.LatLng(47.6562508, -122.3105668), 15);
+
+    map.on("click", function(e) {
+       $(".lat").attr("value", e.latlng.lat);
+       $(".lon").attr("value", e.latlng.lng);
+    });
+</script>
